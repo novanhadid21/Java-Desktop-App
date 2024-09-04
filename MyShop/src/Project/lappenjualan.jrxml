@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="400078de-da35-44c7-86eb-2e2a470b66c3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="awal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="akhir" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="text_awal" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="text_akhir" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_beli.`nofaktur` AS tbl_beli_nofaktur,
+     tbl_beli.`kd_barang` AS tbl_beli_kd_barang,
+     tbl_beli.`nama_barang` AS tbl_beli_nama_barang,
+     tbl_beli.`hsatuan` AS tbl_beli_hsatuan,
+     tbl_beli.`jumlah_beli` AS tbl_beli_jumlah_beli,
+     tbl_beli.`harga` AS tbl_beli_harga,
+     tbl_beli.`tanggal` AS tbl_beli_tanggal
+FROM
+     `tbl_beli` tbl_beli
+WHERE tbl_beli.`tanggal` BETWEEN $P{awal} AND $P{akhir}]]>
+	</queryString>
+	<field name="tbl_beli_nofaktur" class="java.lang.String"/>
+	<field name="tbl_beli_kd_barang" class="java.lang.String"/>
+	<field name="tbl_beli_nama_barang" class="java.lang.String"/>
+	<field name="tbl_beli_hsatuan" class="java.lang.Integer"/>
+	<field name="tbl_beli_jumlah_beli" class="java.lang.Integer"/>
+	<field name="tbl_beli_harga" class="java.lang.Integer"/>
+	<field name="tbl_beli_tanggal" class="java.sql.Date"/>
+	<variable name="SUM" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tbl_beli_harga}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="1" y="105" width="554" height="31" uuid="845648b6-503d-42d2-af2d-35cfae6816ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Roboto" size="20" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Laporan Penjualan]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="153" height="49" uuid="c3ef730a-c09c-47e8-86f9-8d2f32442857"/>
+				<imageExpression><![CDATA["C:\\Users\\Lenovo\\Documents\\Pemrograman Visual\\Pemrograman Visual\\MyShop\\src\\Icons\\icon.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="133" y="0" width="319" height="49" uuid="89fdf7ea-f5a1-4fdf-bd01-00ad3776e728"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ARTSHOP DEPOK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="49" width="319" height="37" uuid="4b8aabcb-1999-4cce-b6c1-8625aa40f9d1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto" size="14"/>
+				</textElement>
+				<text><![CDATA[Jl. Grogol Raya, RT 001/008 No. 35, Kelurahan Limo, Kecamatan Grogol, Depok.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-21" y="95" width="597" height="1" uuid="8624bd90-b1d0-426b-bee9-b4fd0f0790b8"/>
+			</line>
+			<textField>
+				<reportElement x="62" y="95" width="100" height="20" uuid="8bd3597a-4bc9-406e-9f48-a272f60b3365"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{text_awal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="95" width="51" height="19" uuid="243b8418-b05f-47e8-b421-00cc9df8e074"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Dari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="116" width="50" height="20" uuid="90c6b07a-3a5f-4824-b693-499f8daceab9"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Sampai]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="62" y="116" width="100" height="20" uuid="27f4e64c-c5ea-475a-a98c-eac91ce2505c"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{text_akhir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="cbcdc0d9-690c-4e5b-a964-a3dc646e6de0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="62" height="15" forecolor="#736343" uuid="f3c20508-3cd3-41f5-ba81-45e5ad63bb3c"/>
+				<text><![CDATA[No Faktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="62" y="0" width="79" height="15" forecolor="#736343" uuid="d0db0b4d-8952-47ae-a17e-7490d2c43ffc"/>
+				<text><![CDATA[Kode Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="141" y="0" width="98" height="15" forecolor="#736343" uuid="77da8100-15d7-44aa-95da-39c6fe040952"/>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="239" y="0" width="84" height="15" forecolor="#736343" uuid="11d5d5b6-f877-4cc3-982e-c8333fd02bce"/>
+				<text><![CDATA[Harga Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="323" y="0" width="50" height="15" forecolor="#736343" uuid="ce7c3e8d-c7c2-4eaa-989e-8d1d7a1151e9"/>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="373" y="0" width="79" height="15" forecolor="#736343" uuid="8e26c61b-350c-4856-bf53-c12cea5f76c6"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="452" y="0" width="101" height="15" forecolor="#736343" uuid="ce576109-66c6-43c6-b9e0-36d157beb495"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="0ac70ccd-0ff5-4f98-9a9e-822fcd4be4d2"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="62" height="15" uuid="9ac7bdb7-7321-43d9-8701-ec5509183a45"/>
+					<textFieldExpression><![CDATA[$F{tbl_beli_nofaktur}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="62" y="0" width="79" height="15" uuid="ff5f827d-6777-40d2-b7d1-ece3dcd14efd"/>
+					<textFieldExpression><![CDATA[$F{tbl_beli_kd_barang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="141" y="0" width="98" height="15" uuid="232c0fb2-376b-4b56-a093-cb6f82f64cf7"/>
+					<textFieldExpression><![CDATA[$F{tbl_beli_nama_barang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="239" y="0" width="79" height="15" uuid="b84bac72-2028-4994-91ef-9705bbc90765"/>
+					<textFieldExpression><![CDATA[$F{tbl_beli_hsatuan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="323" y="0" width="50" height="15" uuid="b65cfdf9-978e-441f-9647-9cc731f80b9b"/>
+					<textFieldExpression><![CDATA[$F{tbl_beli_jumlah_beli}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="373" y="0" width="79" height="15" uuid="f0ad7e88-f20f-485f-b68f-eeec11410f1d"/>
+					<textFieldExpression><![CDATA[$F{tbl_beli_harga}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="452" y="0" width="101" height="15" uuid="fac294b3-c694-46f4-b952-212ea452a073"/>
+					<textFieldExpression><![CDATA[$F{tbl_beli_tanggal}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="153" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="ad9098de-4e3d-4ef3-87d4-27ef0ec78692"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="373" y="4" width="100" height="20" uuid="962341a2-55a5-467a-8ff8-9c8769d7e187"/>
+				<textElement>
+					<font fontName="Arial" size="12" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="259" y="3" width="96" height="20" uuid="5f79e4e9-3df8-4d81-9977-22bd547387c7"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="4" width="18" height="20" uuid="a8aa1660-72fb-4463-8634-bd7bcc7844c2"/>
+				<textElement>
+					<font fontName="Arial" size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="23" width="47" height="20" forecolor="#736343" uuid="507a3a25-a6b1-4ca3-bf3f-3033cf9af2e2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Depok,]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="398" y="23" width="157" height="20" forecolor="#736343" uuid="d21d8746-e361-4c1a-bd2e-3e535ffbef4f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="131" width="114" height="20" forecolor="#736343" uuid="250391f1-670a-4ff7-ab8d-f7ca420eab27"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[M. Raihan Mahesa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="43" width="114" height="20" forecolor="#736343" uuid="ba1e8f96-8384-4d5a-bb34-ee3633c38b31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pemilik]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="3be8f5ef-906b-43d5-be38-9b036ee9c46f"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="b1252ebd-b7ce-4e13-aaa9-654fd3ba0d85"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="382f40b2-b0af-431d-a853-14577df37007"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="f3a20a3e-5340-42ba-891c-8d80c22e61f4"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
